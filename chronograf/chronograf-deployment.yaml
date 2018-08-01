@@ -1,25 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cronograf-deployment
+  name: chronograf-deployment
   namespace: tick
   labels:
-    app: cronograf-deployment
+    app: chronograf
 spec:
   replicas: 1
   template:
     metadata:
-      name: cronograf-deployment
+      name: chronograf-deployment
       labels:
-        app: cronograf-deployment
+        app: chronograf
     spec:
       containers:
-      - name: cronograf-deployment
-        image: cronograf
+      - name: chronograf
+        image: chronograf
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /data
-            name: cronograf-storage
+            name: chronograf-storage
+        ports:
+          - containerPort: 8888
         env:
         - name: INFLUXDB_URL
           value: http://influxdb:8086
@@ -36,8 +38,8 @@ spec:
 
       restartPolicy: Always
       volumes:
-        - name: cronograf-storage
+        - name: chronograf-storage
           emptyDir: {}
   selector:
     matchLabels:
-      app: cronograf-deployment
+      app: chronograf

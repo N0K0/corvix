@@ -4,6 +4,8 @@ metadata:
   name: influxdb-config
   namespace: tick
 data:
+  users.iql: |+
+    CREATE USER telegraf WITH PASSWORD 'Password' WITH ALL PRIVILEGES
   config.toml: |+
     ### Welcome to the InfluxDB configuration file.
     # The values in this file override the default values used by the system if

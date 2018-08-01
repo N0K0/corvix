@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf-deployment
+  namespace: tick
+  labels:
+    app: telegraf
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: telegraf-deployment
+      labels:
+        app: telegraf
+    spec:
+      containers:
+      - name: telegraf
+        image: telegraf
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: statsd
+            containerPort: 8125
+          - name: udp
+            protocol: "UDP"
+            containerPort: 8092
+          - name: tcp
+            protocol: "TCP"
+            containerPort: 8094
+        env:
+          - name: TELEGRAF_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: telegraf-user-secret
+          - name: TELEGRAF_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: telegraf-user-secret
+        volumeMounts:
+          - mountPath: /etc/telegraf/telegraf.conf
+            name: telegraf-central
+            subPath: telegraf.conf
+      restartPolicy: Always
+      volumes:
+        - name: telegraf-central
+          configMap:
+            name: telegraf-central-config
+  selector:
+    matchLabels:
+      app: telegraf

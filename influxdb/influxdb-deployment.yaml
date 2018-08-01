@@ -23,6 +23,9 @@ spec:
             subPath: config.toml
           - mountPath: /var/lib/influxdb/
             name: influxdb-persistent
+          - mountPath: /docker-entrypoint-initdb.d/users.iql
+            name: influxdb-config-volume
+            subPath: users.iql
         ports:
           - containerPort: 8086
             name: http
@@ -45,7 +48,8 @@ spec:
          configMap:
             name: influxdb-config
        - name: influxdb-persistent
-         emptyDir: {}
+         persistentVolumeClaim:
+           claimName: influxdb-volume-claim
   selector:
     matchLabels:
       app: influxdb
