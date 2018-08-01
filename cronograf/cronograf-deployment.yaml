@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cronograf-deployment
+  namespace: tick
+  labels:
+    app: cronograf-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: cronograf-deployment
+      labels:
+        app: cronograf-deployment
+    spec:
+      containers:
+      - name: cronograf-deployment
+        image: cronograf
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /data
+            name: cronograf-storage
+        env:
+        - name: INFLUXDB_URL
+          value: http://influxdb:8086
+        - name: INFLUXDB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: influxdb-creds
+        - name: INFLUXDB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: influxdb-creds
+
+      restartPolicy: Always
+      volumes:
+        - name: cronograf-storage
+          emptyDir: {}
+  selector:
+    matchLabels:
+      app: cronograf-deployment

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deploy
+  namespace: tick
+  labels:
+    app: influxdb
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: influxdb-deploy
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /var/lib/influxdb/config.toml
+            name: influxdb-config-volume
+            subPath: config.toml
+          - mountPath: /var/lib/influxdb/
+            name: influxdb-persistent
+        ports:
+          - containerPort: 8086
+            name: http
+        env:
+          - name: INFLUXDB_DB
+            value: telegraf
+          - name: INFLUXDB_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: influxdb-creds
+          - name: INFLUXDB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: influxdb-creds
+      restartPolicy: Always
+      volumes:
+       - name: influxdb-config-volume
+         configMap:
+            name: influxdb-config
+       - name: influxdb-persistent
+         emptyDir: {}
+  selector:
+    matchLabels:
+      app: influxdb
