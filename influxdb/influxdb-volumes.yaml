@@ -3,9 +3,11 @@ kind: PersistentVolume
 metadata:
   name: influxdb-volume
   namespace: tick
+  labels:
+    app: influxdb
 spec:
   hostPath:
-    path: "/var/kubernetes-volumes"
+    path: "/var/kubernetes-volumes/influx"
   capacity:
     storage: 10Gi
   accessModes:

@@ -3,10 +3,15 @@ kind: PersistentVolumeClaim
 metadata:
   name: influxdb-volume-claim
   namespace: tick
+  labels:
+    app: influxdb
 spec:
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
+  selector:
+    matchLabels:
+      app: influxdb
   resources:
     requests:
       storage: 10Gi
