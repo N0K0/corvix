@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: chronograf-volume-claim
+  namespace: tick
+  labels:
+    app: chronograf
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  selector:
+    matchLabels:
+      app: chronografs
+  resources:
+    requests:
+      storage: 10Gi
