@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: kismet-main
           configMap:
-            name: kismet-config-main
+            name: corvix-config-main
         - name: kismet-httpd
           configMap:
-            name: kismet-config-httpd
+            name: corvix-config-httpd

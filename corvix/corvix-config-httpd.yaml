@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kismet-config-httpd
+  name: corvix-config-httpd
   namespace: corvix
 data:
   kismet_httpd.conf: |+

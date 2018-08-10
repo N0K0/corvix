@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kismet-config-main
+  name: corvix-config-main
   namespace: corvix
 data:
   kismet.conf: |+
