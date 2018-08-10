@@ -9,7 +9,7 @@ spec:
   hostPath:
     path: "/var/kubernetes-volumes/influx"
   capacity:
-    storage: 10Gi
+    storage: 15Gi
   accessModes:
     - ReadWriteOnce
   storageClassName: manual

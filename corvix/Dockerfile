@@ -14,3 +14,5 @@ RUN ./configure && \
     make suidinstall
 
 COPY python/status_agent.py /status_agent.py
+
+CMD ["kismet"]

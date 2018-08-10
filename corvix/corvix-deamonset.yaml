@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: corvix
+  namespace: corvix
+spec:
+  selector:
+    matchLabels:
+      task: wifi
+  template:
+    metadata:
+      labels:
+        task: wifi
+    spec:
+      containers:
+        - name: corvix
+          image: n0k0/corvix
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: kismet-main
+              mountPath: /usr/local/etc/kismet.conf
+              subPath: kismet.conf
+            - name: kismet-httpd
+              mountPath: /usr/local/etc/kismet-httpd.conf
+              subPath: kismet_httpd.conf
+      volumes:
+        - name: kismet-main
+          configMap:
+            name: kismet-config-main
+        - name: kismet-httpd
+          configMap:
+            name: kismet-config-httpd

@@ -1,7 +1,7 @@
 import requests
 import json
 from urllib import parse
-import KismetRest
+import KismetRests
 
 BASE_URL = "http://localhost:2501"
 

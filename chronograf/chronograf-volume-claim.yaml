@@ -11,7 +11,7 @@ spec:
     - ReadWriteOnce
   selector:
     matchLabels:
-      app: chronografs
+      app: chronograf
   resources:
     requests:
       storage: 10Gi
