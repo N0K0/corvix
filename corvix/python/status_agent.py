@@ -6,8 +6,7 @@ import KismetRest
 BASE_URL = "http://localhost:2501"
 
 def main():
-    ks = KismetRest.KismetConnector(BASE_URL)
-
+    raise NotImplementedError
 
 if __name__ == '__main__':
     main()
