@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kismet-endpoint
+  namespace: corvix
+spec:
+  selector:
+    app: kismet
+  ports:
+    - port: 80
+      targetPort: 2501
+  type: NodePort

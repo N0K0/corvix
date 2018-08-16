@@ -6,12 +6,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      task: wifi
+      app: kismet
   template:
     metadata:
       labels:
-        task: wifi
+        app: kismet
     spec:
+      nodeSelector:
+        app: corvix
       containers:
         - name: corvix
           image: n0k0/corvix
