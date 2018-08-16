@@ -8,7 +8,7 @@ addons:
 
 script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t corvix
+      - docker build corvix/
       - docker images
       - docker tag latest $DOCKER_USERNAME/corvix
       - docker push $DOCKER_USERNAME/corvix
