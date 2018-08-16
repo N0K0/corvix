@@ -13,5 +13,4 @@ script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t n0k0/corvix corvix/
       - docker images
-      - docker tag $DOCKER_USERNAME/corvix
       - docker push $DOCKER_USERNAME/corvix
