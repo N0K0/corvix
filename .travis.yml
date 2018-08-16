@@ -5,6 +5,9 @@ addons:
     packages:
       - docker-ce
 
+env:
+  global:
+    - MAKEFLAGS="-j 2"
 
 script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
