@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.04 as depen
 
 # Install build deps
 RUN apt-get update && \
@@ -11,8 +11,14 @@ RUN apt-get update && \
     protobuf-compiler protobuf-c-compiler \
     librtlsdr0
 
-COPY build.sh /opt/build-kismet.sh
-RUN /bin/bash /opt/build-kismet.sh
+
+CMD git clone https://www.kismetwireless.net/git/kismet.git /opt/kismet
+WORKDIR /opt/kismet
+CMD ./configure         && \
+    make                && \
+    make  suidinstall   && \
+    make  forceconfigs
+
 
 COPY kismet_site.conf /usr/local/etc/kismet_site.conf
 
