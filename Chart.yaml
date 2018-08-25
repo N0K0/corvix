@@ -1,0 +1,11 @@
+name: corvix
+home: https://github.com/N0K0/corvix
+source:
+  - URL TO IMAGE SOURCE
+version: 0.1
+description: Corvix is a system for monitoring wifi devices
+
+maintainers:
+  - nikolas.papaioannou@gmail.com
+details:
+  Corvix is a system for monitoring wifi devices.
