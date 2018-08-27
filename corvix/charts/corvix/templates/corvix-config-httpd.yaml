@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: corvix-config-httpd
-  namespace: corvix
+  namespace: {{ .Release.Name }}
 data:
   kismet_httpd.conf: |+
     # User login and password have moved to:

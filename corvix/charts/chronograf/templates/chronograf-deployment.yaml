@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chronograf-deployment
-  namespace: tick
+  namespace: {{ .Release.Name }}
   labels:
     app: chronograf
 spec:

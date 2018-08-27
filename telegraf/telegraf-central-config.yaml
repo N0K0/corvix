@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: telegraf-central-config
-  namespace: tick
+  namespace: {{ .Release.Name }}
 data:
   telegraf.conf: |+
     # Telegraf Configuration

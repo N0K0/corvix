@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: corvix-config-logging
-  namespace: corvix
+  namespace: {{ .Release.Name }}
 data:
   kismet_logging.conf: |+
     # Kismet log files can contain many types of information; individual types can be

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: influxdb-config
-  namespace: tick
+  namespace: {{ .Release.Name }}
 data:
   users.iql: |+
     CREATE USER telegraf WITH PASSWORD 'Password' WITH ALL PRIVILEGES

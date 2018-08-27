@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: influxdb-volume-claim
-  namespace: tick
+  namespace: {{ .Release.Name }}
   labels:
     app: influxdb
 spec:

@@ -2,5 +2,5 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: chronograf-config
-  namespace: tick
+  namespace: {{ .Release.Name }}
 data:

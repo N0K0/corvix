@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
-helm-keep: "true"
+helm-keep: true
 metadata:
-  name: corvix
+  name: corvix-{{ .Release.Name }}
   labels:
     name: corvix

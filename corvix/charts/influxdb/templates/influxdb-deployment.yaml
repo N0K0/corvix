@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: influxdb-deploy
-  namespace: tick
+  namespace: {{ .Release.Name }}
   labels:
     app: influxdb
 spec:
